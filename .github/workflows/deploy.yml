@@ -1,22 +1,21 @@
-name: Deploy HTML page to GitHub Pages
+name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Deploy to GitHub Pages
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.actions.githubScript.push(
-              payload,
-              branch = "gh-pages",
-              commitMessage = "Deployed HTML page"
-            )
+      - name: Build and Test
+        run: |
+          # Add any necessary build or test commands here
+          # For a simple HTML page, this may be empty or just copying files
+
+      # Add additional steps if needed, such as deploying to a web server
