@@ -1,0 +1,22 @@
+name: Deploy HTML page to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Deploy to GitHub Pages
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.actions.githubScript.push(
+              payload,
+              branch = "gh-pages",
+              commitMessage = "Deployed HTML page"
+            )
