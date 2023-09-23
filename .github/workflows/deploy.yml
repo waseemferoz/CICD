@@ -4,18 +4,20 @@ on:
   push:
     branches:
       - main
-
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and Test
+      - name: Deploy to GitHub Pages
         run: |
-          # Add any necessary build or test commands here
-          # For a simple HTML page, this may be empty or just copying files
-
-      # Add additional steps if needed, such as deploying to a web server
+          # Build your HTML page (if needed)
+          # Deploy to GitHub Pages
+          git config --global user.name "${{ secrets.GITHUB_ACTOR }}"
+          git config --global user.email "${{ secrets.GITHUB_ACTOR }}@users.noreply.github.com"
+          npm install -g gh-pages
+          npm run build  # or any other build step
+          npx gh-pages -d build
